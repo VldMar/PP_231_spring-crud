@@ -15,13 +15,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan(basePackages = "crud")
 public class WebConfig implements WebMvcConfigurer {
 
-    private final ApplicationContext applicationContext;
-
-    @Autowired
-    public WebConfig(ApplicationContext applicationContext) {
-        this.applicationContext = applicationContext;
-    }
-
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
