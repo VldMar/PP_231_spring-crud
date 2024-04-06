@@ -2,12 +2,14 @@ package crud.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class DispatcherServletInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     // Specify @Configuration and/or @Component classes for "root" application context (non-web infrastructure) configuration.
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[0];
+        return new Class[] {
+                HibernateConfig.class
+        };
     }
 
     // Specify @Configuration and/or @Component classes for DispatcherServlet application context (Spring MVC infrastructure) configuration.

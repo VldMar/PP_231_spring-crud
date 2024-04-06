@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все пользователи</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <div class="wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th> ID </th>
+                <th> Имя </th>
+                <th> Фамилия </th>
+                <th> Возраст </th>
+                <th> Изменить </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td><span th:text="${user.id}"> </span></td>
+                <td><span th:text="${user.name}"> </span></td>
+                <td><span th:text="${user.lastName}"> </span></td>
+                <td><span th:text="${user.age}"> </span></td>
+                <td><button class="btn">Изменить</button> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
