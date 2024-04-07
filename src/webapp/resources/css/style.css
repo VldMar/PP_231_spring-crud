@@ -3,16 +3,17 @@ body {
 }
 
 .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    max-width: 1190px;
+    margin: 0 auto;
 }
+
+/* table */
 
 table {
     width: 100%;
-    margin-bottom: 20px;
     border: 1px solid #dddddd;
     border-collapse: collapse;
+    margin: 10px 0;
 }
 table th {
     font-weight: bold;
@@ -29,6 +30,8 @@ table tbody tr:nth-child(even){
     background: #f3f3f3;
 }
 
+/* buttons */
+
 .btn {
 
     background-color: #FAFBFC;
@@ -41,12 +44,11 @@ table tbody tr:nth-child(even){
     display: inline-block;
     font-size: 14px;
     font-weight: 500;
-    padding: 6px 16px;
+    padding: 5px 10px;
     position: relative;
     transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
     word-wrap: break-word;
-
-
+    text-decoration: none;
 }
 .btn:hover {
     background-color: #F3F4F6;
@@ -58,5 +60,47 @@ table tbody tr:nth-child(even){
 }
 
 .main-btn {
-    background-color: #405cf5;
+    background-color: #007bff;
+    color: white;
+}
+
+.main-btn:hover {
+    background-color: #0069d9;
+}
+
+/* form controls */
+form {
+    font-size: 18px;
+    max-width: 490px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    line-height: 1.5;
+    font-size: 1rem;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.form-group {
+    margin-bottom: 15px;
 }

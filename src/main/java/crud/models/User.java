@@ -1,6 +1,8 @@
 package crud.models;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
@@ -20,7 +22,7 @@ public class User {
     private String lastName;
 
     @Column(name = "birthday")
-    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthday;
 
     public User() {

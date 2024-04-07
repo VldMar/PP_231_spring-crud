@@ -1,44 +1,51 @@
 package crud.dao;
 
 import crud.models.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Component
+@Component("userDaoHibernate")
 public class UserDaoHibernateImpl implements UserDao {
 
-    private final EntityManagerFactory entityManagerFactory;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-    @Autowired
-    public UserDaoHibernateImpl(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
-    }
 
     @Override
+    @Transactional
     public List<User> getAllUsers() {
-        return null;
+        return this.entityManager.createQuery("from User", User.class).getResultList();
     }
 
     @Override
-    public User getUserById(int id) {
-        return null;
+    @Transactional
+    public User findUserById(int id) {
+        return this.entityManager.find(User.class, id);
     }
 
     @Override
-    public void editUser(User user) {
-
+    @Transactional
+    public void saveUser(User user) {
+        this.entityManager.persist(user);
     }
 
     @Override
-    public void addUser(User user) {
-
+    @Transactional
+    public void updateUser(User userToBeUpdated) {
+        this.entityManager.merge(userToBeUpdated);
     }
 
     @Override
+    @Transactional
     public void removeUserById(int id) {
-
+        User user = this.findUserById(id);
+        if (user == null) {
+            throw new RuntimeException("Нет пользователя с индексом " + id);
+        }
+        entityManager.remove(user);
     }
 }
