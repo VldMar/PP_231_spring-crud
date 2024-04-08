@@ -44,7 +44,7 @@ public class UsersController {
 
     //region Update user
     @GetMapping("/update")
-    public String showFormForUpdateUser(@RequestParam("id") int userId, Model model) {
+    public String showFormForUpdateUser(@RequestParam("id") Long userId, Model model) {
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
         return "users/update-user";
@@ -59,7 +59,7 @@ public class UsersController {
 
     //region remove User
     @GetMapping("/remove")
-    public String removeUser(@RequestParam("id") int userId) {
+    public String removeUser(@RequestParam("id") Long userId) {
         userService.removeUserById(userId);
         return "redirect:/";
     }

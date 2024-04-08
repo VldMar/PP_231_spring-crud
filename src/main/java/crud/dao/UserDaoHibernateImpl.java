@@ -22,7 +22,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     @Transactional
-    public User findUserById(int id) {
+    public User findUserById(Long id) {
         return this.entityManager.find(User.class, id);
     }
 
@@ -40,7 +40,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     @Transactional
-    public void removeUserById(int id) {
+    public void removeUserById(Long id) {
         this.entityManager.remove(this.findUserById(id));
     }
 }
