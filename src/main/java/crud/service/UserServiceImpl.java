@@ -18,7 +18,6 @@ public class UserServiceImpl implements UserService {
         this.userDao = userDao;
     }
 
-
     @Override
     public List<User> getAllUsers() {
         return this.userDao.getAllUsers();

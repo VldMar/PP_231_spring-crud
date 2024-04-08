@@ -9,7 +9,7 @@
 <body>
 <div class="wrapper">
     <h1>Изменить параметры пользователя</h1>
-    <form th:method="POST" th:action="@{/edit}" th:object="${user}">
+    <form th:method="POST" th:action="@{/update}" th:object="${user}">
         <input type="hidden" th:field="*{id}"/>
         <div class="form-group">
             <label for="name">Имя</label>

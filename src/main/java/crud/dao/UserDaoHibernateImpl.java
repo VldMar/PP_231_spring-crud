@@ -14,7 +14,6 @@ public class UserDaoHibernateImpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-
     @Override
     @Transactional
     public List<User> getAllUsers() {
@@ -42,10 +41,6 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     @Transactional
     public void removeUserById(int id) {
-        User user = this.findUserById(id);
-        if (user == null) {
-            throw new RuntimeException("Нет пользователя с индексом " + id);
-        }
-        entityManager.remove(user);
+        this.entityManager.remove(this.findUserById(id));
     }
 }

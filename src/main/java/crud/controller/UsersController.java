@@ -14,13 +14,16 @@ import java.time.LocalDate;
 @RequestMapping("/")
 public class UsersController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UsersController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping()
     public String showAllUsers(ModelMap model) {
         model.addAttribute("users", userService.getAllUsers());
-
         return "users/all-users";
     }
 
@@ -40,14 +43,14 @@ public class UsersController {
     //endregion
 
     //region Update user
-    @GetMapping("/edit")
+    @GetMapping("/update")
     public String showFormForUpdateUser(@RequestParam("id") int userId, Model model) {
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
-        return "users/edit-user";
+        return "users/update-user";
     }
 
-    @PostMapping("/edit")
+    @PostMapping("/update")
     public String updateUser(@ModelAttribute("user") User user) {
         userService.updateUser(user);
         return "redirect:/";
