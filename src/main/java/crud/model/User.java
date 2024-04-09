@@ -1,4 +1,4 @@
-package crud.models;
+package crud.model;
 
 
 import org.springframework.format.annotation.DateTimeFormat;

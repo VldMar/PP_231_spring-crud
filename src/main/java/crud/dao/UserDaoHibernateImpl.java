@@ -1,6 +1,6 @@
 package crud.dao;
 
-import crud.models.User;
+import crud.model.User;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,30 +17,30 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     @Transactional
     public List<User> getAllUsers() {
-        return this.entityManager.createQuery("from User", User.class).getResultList();
+        return entityManager.createQuery("from User", User.class).getResultList();
     }
 
     @Override
     @Transactional
     public User findUserById(Long id) {
-        return this.entityManager.find(User.class, id);
+        return entityManager.find(User.class, id);
     }
 
     @Override
     @Transactional
     public void saveUser(User user) {
-        this.entityManager.persist(user);
+        entityManager.persist(user);
     }
 
     @Override
     @Transactional
     public void updateUser(User userToBeUpdated) {
-        this.entityManager.merge(userToBeUpdated);
+        entityManager.merge(userToBeUpdated);
     }
 
     @Override
     @Transactional
     public void removeUserById(Long id) {
-        this.entityManager.remove(this.findUserById(id));
+        entityManager.remove(findUserById(id));
     }
 }

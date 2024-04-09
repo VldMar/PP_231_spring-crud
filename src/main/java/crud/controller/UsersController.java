@@ -1,14 +1,12 @@
 package crud.controller;
 
-import crud.models.User;
+import crud.model.User;
 import crud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/")
@@ -27,11 +25,9 @@ public class UsersController {
         return "users/all-users";
     }
 
-    //region Create new User
     @GetMapping("/add")
     public String showFormForCreateUser(ModelMap model) {
-        User user = new User("name", "lastName", LocalDate.now());
-        model.addAttribute("user", user);
+        model.addAttribute("user", new User());
         return "users/add-user";
     }
 
@@ -40,9 +36,7 @@ public class UsersController {
         userService.saveUser(user);
         return "redirect:/";
     }
-    //endregion
 
-    //region Update user
     @GetMapping("/update")
     public String showFormForUpdateUser(@RequestParam("id") Long userId, Model model) {
         User user = userService.findUserById(userId);
@@ -55,13 +49,10 @@ public class UsersController {
         userService.updateUser(user);
         return "redirect:/";
     }
-    //endregion
 
-    //region remove User
-    @GetMapping("/remove")
+    @DeleteMapping("/remove")
     public String removeUser(@RequestParam("id") Long userId) {
         userService.removeUserById(userId);
         return "redirect:/";
     }
-    //endregion
 }

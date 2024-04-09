@@ -1,6 +1,6 @@
 package crud.dao;
 
-import crud.models.User;
+import crud.model.User;
 
 import java.util.List;
 

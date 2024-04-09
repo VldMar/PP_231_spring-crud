@@ -1,10 +1,13 @@
 package crud.config;
 
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 public class DispatcherServletInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-    // Specify @Configuration and/or @Component classes for "root" application context (non-web infrastructure) configuration.
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class[] {
@@ -12,15 +15,25 @@ public class DispatcherServletInit extends AbstractAnnotationConfigDispatcherSer
         };
     }
 
-    // Specify @Configuration and/or @Component classes for DispatcherServlet application context (Spring MVC infrastructure) configuration.
     @Override
     protected Class<?>[] getServletConfigClasses() {
         return new Class[] { WebConfig.class };
     }
 
-    // Specify the servlet mapping(s) for the DispatcherServlet — for example "/", "/app", etc.
     @Override
     protected String[] getServletMappings() {
         return new String[] {"/"};
+    }
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        registerHiddenFieldFilter(servletContext);
+    }
+
+    private void registerHiddenFieldFilter(ServletContext servletContext) {
+        servletContext
+                .addFilter("hiddenHttpMethodFilter", new HiddenHttpMethodFilter())
+                .addMappingForUrlPatterns(null, true, "/*");
     }
 }

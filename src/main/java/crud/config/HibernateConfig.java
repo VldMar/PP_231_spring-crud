@@ -40,13 +40,12 @@ public class HibernateConfig {
         return dataSource;
     }
 
-    // Entity Manager Factory setup
     @Bean
     public LocalContainerEntityManagerFactoryBean getEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean
                 = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(getDataSource());
-        entityManagerFactoryBean.setPackagesToScan("crud.models");
+        entityManagerFactoryBean.setPackagesToScan("crud.model");
 
         Properties props=new Properties();
         props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
@@ -59,13 +58,11 @@ public class HibernateConfig {
         return entityManagerFactoryBean;
     }
 
-    // jpa realization
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         return new HibernateJpaVendorAdapter();
     }
 
-    // transaction config
     @Bean
     public PlatformTransactionManager getTransactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
