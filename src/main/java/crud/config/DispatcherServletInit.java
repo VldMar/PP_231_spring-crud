@@ -1,5 +1,6 @@
 package crud.config;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -32,8 +33,10 @@ public class DispatcherServletInit extends AbstractAnnotationConfigDispatcherSer
     }
 
     private void registerHiddenFieldFilter(ServletContext servletContext) {
-        servletContext
-                .addFilter("hiddenHttpMethodFilter", new HiddenHttpMethodFilter())
+        servletContext.addFilter("characterEncodingFilter", new CharacterEncodingFilter("UTF-8", true))
                 .addMappingForUrlPatterns(null, true, "/*");
+        servletContext.addFilter("hiddenHttpMethodFilter", new HiddenHttpMethodFilter())
+                .addMappingForUrlPatterns(null, true, "/*");
+
     }
 }
